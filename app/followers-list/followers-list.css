@@ -1,0 +1,45 @@
+
+.card {
+    box-shadow: 0px 0px 25px -8px rgba(0, 0, 0, 0.34);
+}
+.btn-outline-custom {
+    border-color:#dee2e6;
+    color: black;
+    background-color: #fff;
+}
+.btn-group .btn-outline-custom:hover {
+    background-color: black;
+    color: white;
+}
+.btn-outline-custom .bi {
+    color: black;
+    transition: color 0.3s ease;
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    border-color:transparent;
+}
+.btn-outline-custom:hover .bi {
+    color: #fff;
+}
+
+.delete-icon i {
+    color: red;
+}
+
+.btn-group .btn {
+    width: 200px;
+    background:#fff;
+}
+
+.btn:disabled i {
+    color: unset;
+}
+
+.form-group .form-control {
+    background-color: #fff;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border:none;
+}

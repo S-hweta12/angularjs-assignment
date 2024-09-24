@@ -1,0 +1,93 @@
+<div class="container-fluid follower-list-wrapper p-4">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="d-flex justify-content-between header-wrapper">
+        <div class="">
+          <followers-sorting 
+            on-sort-change="$ctrl.handleSortChange(orderProp, sortReverse)" 
+            order-prop="$ctrl.orderProp" 
+            sort-reverse="$ctrl.sortReverse"
+          />
+        </div>
+
+        <div class="mb-4">
+          <date-range-picker on-date-range-change="$ctrl.handleDateRangeChange(dateRange)" />
+        </div>
+  
+      </div>
+
+      <div class="alert alert-warning alert-dismissible fade show" 
+        role="alert" 
+        ng-if="$ctrl.isChirpinessDisabled"
+      >
+        <strong>Chirpiness</strong> cannot be sorted for date ranges longer than 6 months.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <div class="list-wrapper">
+        <div class="row">
+          <div ng-repeat="item in $ctrl.filteredData | orderBy:$ctrl.orderProp:$ctrl.sortReverse"
+              class="col-md-3">
+              <div class="card mb-4">
+                  <div class="card-body">
+                      <div class="row">
+                          <!-- Image Column -->
+                          <div class="col-md-4">
+                              <img src="{{item.image}}" alt="{{item.fullname}} image" class="img-fluid rounded-circle" />
+                          </div>
+                          <!-- Data Column -->
+                          <div class="col-md-8">
+                              <h5>{{item.fullname}}</h5>
+                              <div class="mt-3">
+                                  <div class="count-wrapper d-flex">
+                                      <p>Friends :</p>
+                                      <span class="ps-2">{{item.twubric.friends}}</span>
+                                  </div>
+                                  <div class="count-wrapper d-flex">
+                                      <p>Influence :</p>
+                                      <span class="ps-2">{{item.twubric.influence}}</span>
+                                  </div>
+                                  <div class="count-wrapper d-flex">
+                                      <p>Chirpiness :</p>
+                                      <span class="ps-2">{{item.twubric.chirpiness}}</span>
+                                  </div>
+                              </div>
+                              <span class="fw-bold"> Twitter Rubric Score  : {{item.twubric.total}}</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="d-flex justify-content-between py-2 px-4">
+                      <p class="fw-bold mb-0 pt-2">{{item.join_date | date :Medium}}</p>
+                      <button class="btn delete-icon pe-0"
+                        ng-click="$ctrl.openModal(item)"
+                        ng-disabled="$ctrl.orderProp === 'twubric.chirpiness' && item.twubric.chirpiness === 4">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <p ng-if="$ctrl.filteredData.length === 0" class="d-flex justify-content-center align-item-center">No followers found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Structure -->
+<div class="modal fade" id="confirmRemoveModal" tabindex="-1" aria-labelledby="confirmRemoveModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmRemoveModalLabel">Confirm Removal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to remove this follower?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" ng-click="$ctrl.confirmRemove()">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>

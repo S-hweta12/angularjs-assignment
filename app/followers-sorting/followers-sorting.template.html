@@ -1,0 +1,32 @@
+<div class="sorting-wrapper d-flex mb-4">
+    <p class="mb-0 me-4 mt-2">Sort by:</p>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-custom mb-2" ng-click="$ctrl.toggleSort('twubric.total')">
+        Twitter Rubric Score
+        <span ng-show="$ctrl.orderProp === 'twubric.total'">
+          <i ng-class="{'bi-arrow-up': !$ctrl.sortReverse, 'bi-arrow-down': $ctrl.sortReverse}" class="bi"></i>
+        </span>
+      </button>
+
+      <button type="button" class="btn btn-outline-custom mb-2" ng-click="$ctrl.toggleSort('twubric.friends')">
+        Friends
+        <span ng-show="$ctrl.orderProp === 'twubric.friends'">
+          <i ng-class="{'bi-arrow-up': !$ctrl.sortReverse, 'bi-arrow-down': $ctrl.sortReverse}" class="bi"></i>
+        </span>
+      </button>
+
+      <button type="button" class="btn btn-outline-custom mb-2" ng-click="$ctrl.toggleSort('twubric.influence')">
+        Influence
+        <span ng-show="$ctrl.orderProp === 'twubric.influence'">
+          <i ng-class="{'bi-arrow-up': !$ctrl.sortReverse, 'bi-arrow-down': $ctrl.sortReverse}" class="bi"></i>
+        </span>
+      </button>
+
+      <button type="button" class="btn btn-outline-custom mb-2" ng-click="$ctrl.toggleSort('twubric.chirpiness')">
+        Chirpiness
+        <span ng-show="$ctrl.orderProp === 'twubric.chirpiness'">
+          <i ng-class="{'bi-arrow-up': !$ctrl.sortReverse, 'bi-arrow-down': $ctrl.sortReverse}" class="bi"></i>
+        </span>
+      </button>
+    </div>
+</div>
